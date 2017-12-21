@@ -1,0 +1,22 @@
+﻿@model E_Commerce.Models.ViewModels.ListeProduitsViewModels
+@{
+    ViewBag.Title = "E-Commerce";
+}
+
+@foreach (Produit p in Model.ProduitList)
+{
+    <ul>
+        <li>@p.Name</li>
+        <li>@p.Description</li>
+        <li>@p.Category</li>
+        <li>@p.Price</li>
+    </ul>
+}
+
+<div page-model="@Model.PageInfo" page-action="List">
+
+    @for (int i = 0; i < @Model.PageInfo.NbPage(Model.PageInfo.NombreProduits, Model.PageInfo.ProduitsParPages); i++)
+    {
+        <a href="/Produit/List/?page=@(i+1)">@(i+1) </a>
+    }
+</div>
